@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sohii_v2/ui/screen_main.dart';
 import 'constants.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: mainTheme,
       title: 'Sohii',
+      home: ScreenMain(),
     );
   }
 }
