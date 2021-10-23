@@ -1,6 +1,6 @@
 # sohii_v2
 
-A new Flutter project.
+A new Flutter project. sohii
 
 ## Getting Started
 
