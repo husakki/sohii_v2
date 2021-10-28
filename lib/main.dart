@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sohii_v2/ui/screen_main.dart';
+import 'package:sohii_v2/view/screen_main.dart';
 import 'constants.dart';
 
 void main() {
