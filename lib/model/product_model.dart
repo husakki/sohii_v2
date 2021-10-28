@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sohii_v2/datatypes/product_type.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-// FromJson from https://app.quicktype.io/
 class ProductModel extends GetxController {
   final jsonProducts = Future.value(<Product>[]).obs;
 
