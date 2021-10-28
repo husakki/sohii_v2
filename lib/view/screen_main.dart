@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sohii_v2/datatypes/product_type.dart';
+import 'package:sohii_v2/model/product_model.dart';
 
 class ScreenMain extends StatefulWidget {
   const ScreenMain({Key? key}) : super(key: key);
@@ -13,29 +16,55 @@ class _ScreenMainState extends State<ScreenMain> {
   double get screenWidth => MediaQuery.of(context).size.width;
 
   @override
+  void initState() {
+    super.initState();
+    ProductModel();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            top: screenHeight * 0.2,
-            width: screenWidth,
-            child: const Image(
-              fit: BoxFit.fitWidth,
-              image: AssetImage("assets/images/Tshirt_Parallex.png"),
+    final ProductModel products = Get.put(ProductModel());
+
+    return FutureBuilder<List<Product>>(
+      future: products.jsonProducts.value,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            body: Stack(
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  top: screenHeight * 0.2,
+                  width: screenWidth,
+                  child: const Image(
+                    fit: BoxFit.fitWidth,
+                    image: AssetImage("assets/images/Tshirt_Parallex.png"),
+                  ),
+                ),
+                Positioned(
+                  top: screenHeight * -0.07,
+                  child: Image(
+                    height: screenHeight * 0.6,
+                    width: screenWidth * 0.75,
+                    image: const AssetImage("assets/images/Sohii_Logo.png"),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  child: Text(snapshot.data![0].product),
+                ),
+              ],
             ),
-          ),
-          Positioned(
-            top: screenHeight * -0.07,
-            child: Image(
-              height: screenHeight * 0.6,
-              width: screenWidth * 0.75,
-              image: const AssetImage("assets/images/Sohii_Logo.png"),
-            ),
-          ),
-        ],
-      ),
+          );
+        } else if (snapshot.hasError) {
+          return Text("${snapshot.error}");
+        }
+
+        // By default, show a loading spinner.
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
