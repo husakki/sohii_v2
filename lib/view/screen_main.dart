@@ -51,9 +51,7 @@ class _ScreenMainState extends State<ScreenMain> {
                   ),
                 ),
                 Positioned(
-                  left: 0,
-                  right: 0,
-                  child: Text(snapshot.data![0].product),
+                  child: Center(child: Text(snapshot.data![0].product)),
                 ),
               ],
             ),
