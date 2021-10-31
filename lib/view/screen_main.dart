@@ -51,6 +51,7 @@ class _ScreenMainState extends State<ScreenMain> {
                   ),
                 ),
                 Positioned(
+                  //! getting weird errors | before it was left 0 right 0 and without center
                   child: Center(child: Text(snapshot.data![0].product)),
                 ),
               ],
