@@ -13,9 +13,26 @@ class ScreenMain extends StatefulWidget {
 
 class _ScreenMainState extends State<ScreenMain> {
   //TODO make a sizeconfig in rootdir so I dont have to do this in every Screen
+  late ScrollController _scrollController;
+
   double get screenHeight => MediaQuery.of(context).size.height;
 
   double get screenWidth => MediaQuery.of(context).size.width;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  double get offset =>
+      _scrollController.hasClients ? _scrollController.offset : 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +57,7 @@ class _ScreenMainState extends State<ScreenMain> {
               image: const AssetImage("assets/images/Sohii_Logo.png"),
             ),
           ),
-          Positioned(
-            //! getting weird errors | before it was left 0 right 0 and without center
-            child: Center(child: Text("Absent.png")),
-          ),
-          Positioned(
-            top: screenHeight * 0.7,
+          Scrollbar(
             child: ProductView(),
           ),
         ],

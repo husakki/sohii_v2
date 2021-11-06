@@ -28,15 +28,28 @@ class _ProductViewState extends State<ProductView> {
 
     return FutureBuilder<List<Product>>(
       future: products.jsonProducts.value,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Stack(
-            children: [
-              Text("data"),
-            ],
+      builder: (context, jsonContent) {
+        if (jsonContent.hasData) {
+          return ListView.builder(
+            //TODO main and make it react to it.
+            // controller: ,
+            itemCount: jsonContent.data!.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  // Container(
+                  //   height: screenHeight,
+                  // ),
+                  Container(
+                    // height: 500,
+                    child: Text("${jsonContent.data![0].product}"),
+                  ),
+                ],
+              );
+            },
           );
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
+        } else if (jsonContent.hasError) {
+          return Text("${jsonContent.error}");
         }
 
         // By default, show a loading spinner.
