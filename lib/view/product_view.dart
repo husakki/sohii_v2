@@ -31,12 +31,14 @@ class _ProductViewState extends State<ProductView> {
       builder: (context, jsonContent) {
         if (jsonContent.hasData) {
           return ListView.builder(
+            // TODO need to make a getx object to share the controller with the screen
             //TODO main and make it react to it.
             // controller: ,
             itemCount: jsonContent.data!.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
+                  //TODO need to be moved above the listview builder
                   // Container(
                   //   height: screenHeight,
                   // ),
