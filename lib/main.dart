@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: mainTheme,
       title: 'Sohii',
-      home: ScreenMain(),
+      home: const ScreenMain(),
     );
   }
 }
