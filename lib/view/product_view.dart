@@ -44,7 +44,7 @@ class _ProductViewState extends State<ProductView> {
                   // ),
                   Container(
                     // height: 500,
-                    child: Text("${jsonContent.data![0].product}"),
+                    child: Text("${jsonContent.data![index].product}"),
                   ),
                 ],
               );
