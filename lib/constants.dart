@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//TODO fix deprecation
 ThemeData mainTheme = ThemeData(
   fontFamily: 'Sora',
   scaffoldBackgroundColor: const Color(0xff131313),

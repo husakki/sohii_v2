@@ -11,16 +11,16 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  //TODO make a sizeconfig in rootdir so I dont have to do this in every Screen
-  double get screenHeight => MediaQuery.of(context).size.height;
-
-  double get screenWidth => MediaQuery.of(context).size.width;
-
   @override
   void initState() {
     super.initState();
     ProductModel();
   }
+
+  //TODO make a sizeconfig in rootdir so I dont have to do this in every Screen
+  double get screenHeight => MediaQuery.of(context).size.height;
+
+  double get screenWidth => MediaQuery.of(context).size.width;
 
   @override
   Widget build(BuildContext context) {
