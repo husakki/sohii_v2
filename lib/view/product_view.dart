@@ -45,6 +45,43 @@ class _ProductViewState extends State<ProductView> {
                       color: Color(products.data![index].getMainColour),
                     ),
                   ),
+                  Row(
+                    children: [
+                      Image.asset(
+                          "assets/images/Absent.png"), //! For now only Absent, use this later on ${products.data![index].getProduct}
+                      Flexible(
+                        child: Text("${products.data![index].getDescription}"),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("S"),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("M"),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("L"),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("XL"),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text("Vorbestellen"),
+                      ),
+                    ],
+                  ),
                 ],
               );
             },
