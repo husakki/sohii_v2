@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sohii_v2/datatypes/product_type.dart';
-import 'package:sohii_v2/model/product_model.dart';
 import 'package:sohii_v2/view/product_view.dart';
 
 class ScreenMain extends StatefulWidget {
@@ -57,7 +54,7 @@ class _ScreenMainState extends State<ScreenMain> {
               image: const AssetImage("assets/images/Sohii_Logo.png"),
             ),
           ),
-          Scrollbar(
+          const Scrollbar(
             child: ProductView(),
           ),
         ],

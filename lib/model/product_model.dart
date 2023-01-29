@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sohii_v2/datatypes/product_type.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+/// This class gets the information about the avail. products from the json file
 class ProductModel extends GetxController {
   final jsonProducts = Future.value(<Product>[]).obs;
 

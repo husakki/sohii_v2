@@ -1,3 +1,4 @@
+/// This class represents a single product which its descriptions
 class Product {
   final String product;
   final String description;
