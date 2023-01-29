@@ -1,18 +1,18 @@
 /// This class represents a single product which its descriptions
 class Product {
-  final String product;
-  final String description;
-  final String productInformation;
-  final String mainColour;
+  final String _product;
+  final String _description;
+  final String _productInformation;
+  final String _mainColour;
 
-  Product(
-      this.product, this.description, this.productInformation, this.mainColour);
+  Product(this._product, this._description, this._productInformation,
+      this._mainColour);
 
-  get getProduct => product;
+  get getProduct => _product;
 
-  get getDescription => description;
+  get getDescription => _description;
 
-  get getProductInformation => productInformation;
+  get getProductInformation => _productInformation;
 
-  get getMainColour => mainColour;
+  get getMainColour => int.parse(_mainColour);
 }
