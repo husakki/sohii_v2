@@ -82,6 +82,7 @@ class _ProductViewState extends State<ProductView> {
                       ),
                     ],
                   ),
+                  Text("${products.data![index].getProductInformation}"),
                 ],
               );
             },
