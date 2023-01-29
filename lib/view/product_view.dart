@@ -38,7 +38,13 @@ class _ProductViewState extends State<ProductView> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  Text(products.data![index].product),
+                  Text(
+                    products.data![index].getProduct,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Color(products.data![index].getMainColour),
+                    ),
+                  ),
                 ],
               );
             },
