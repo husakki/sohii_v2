@@ -38,51 +38,61 @@ class _ProductViewState extends State<ProductView> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  Text(
-                    products.data![index].getProduct,
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Color(products.data![index].getMainColour),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      products.data![index].getProduct,
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Color(products.data![index].getMainColour),
+                      ),
                     ),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Image.asset(
-                          "assets/images/Absent.png"), //! For now only Absent, use this later on ${products.data![index].getProduct}
-                      Flexible(
-                        child: Text("${products.data![index].getDescription}"),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Row(
+                        "assets/images/Absent.png",
+                        height: 800,
+                        width: 800,
+                      ), //! For now only Absent, use this later on ${products.data![index].getProduct}
+                      Column(
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("S"),
+                          Container(
+                            width: 400,
+                            child:
+                                Text("${products.data![index].getDescription}"),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("M"),
+                          Row(
+                            children: [
+                              TextButton(
+                                onPressed: () {},
+                                child: Text("S"),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text("M"),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text("L"),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text("XL"),
+                              ),
+                            ],
                           ),
-                          TextButton(
+                          ElevatedButton(
                             onPressed: () {},
-                            child: Text("L"),
+                            child: const Text("Vorbestellen"),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("XL"),
-                          ),
+                          Text(
+                              "${products.data![index].getProductInformation}"),
                         ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Vorbestellen"),
-                      ),
                     ],
                   ),
-                  Text("${products.data![index].getProductInformation}"),
                 ],
               );
             },
