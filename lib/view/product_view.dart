@@ -34,20 +34,20 @@ class _ProductViewState extends State<ProductView> {
       builder: (context, products) {
         if (products.hasData) {
           return ListView.builder(
-            // TODO need to make a getx object to share the controller with the screen
-            //TODO main and make it react to it.
-            // controller: ,
             itemCount: products.data!.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      products.data![index].getProduct,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Color(products.data![index].getMainColour),
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 50.0),
+                      child: Text(
+                        products.data![index].getProduct,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Color(products.data![index].getMainColour),
+                        ),
                       ),
                     ),
                   ),
