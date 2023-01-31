@@ -54,12 +54,28 @@ class _ProductViewState extends State<ProductView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Flexible(
-                        child: Image.asset(
-                          "assets/images/Absent.png",
-                          height: 800,
-                          width: 800,
-                        ),
+                      Stack(
+                        fit: StackFit.loose,
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(
+                                      products.data![index].getMainColour),
+                                  blurRadius: 570,
+                                  spreadRadius: 80,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Image.asset(
+                            "assets/images/Absent.png",
+                            height: 800,
+                            width: 800,
+                          ),
+                        ],
                       ), //! For now only Absent, use this later on ${products.data![index].getProduct}
                       SizedBox(
                         height: 500,
@@ -68,11 +84,16 @@ class _ProductViewState extends State<ProductView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                              width: 400,
+                              width: 600,
                               child: Text(
-                                  "${products.data![index].getDescription}"),
+                                "${products.data![index].getDescription}",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                            SizeSelector(),
+                            const SizeSelector(),
                           ],
                         ),
                       ),
