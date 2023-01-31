@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sohii_v2/datatypes/product_type.dart';
 import 'package:sohii_v2/model/product_model.dart';
+import 'package:sohii_v2/sizeconfig.dart';
 
 class ProductView extends StatefulWidget {
   const ProductView({Key? key}) : super(key: key);
@@ -25,6 +26,8 @@ class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     final ProductModel products = Get.put(ProductModel());
+
+    SizeConfig().init(context);
 
     return FutureBuilder<List<Product>>(
       future: products.jsonProducts.value,
@@ -51,45 +54,27 @@ class _ProductViewState extends State<ProductView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset(
-                        "assets/images/Absent.png",
-                        height: 800,
-                        width: 800,
+                      Flexible(
+                        child: Image.asset(
+                          "assets/images/Absent.png",
+                          height: 800,
+                          width: 800,
+                        ),
                       ), //! For now only Absent, use this later on ${products.data![index].getProduct}
-                      Column(
-                        children: [
-                          Container(
-                            width: 400,
-                            child:
-                                Text("${products.data![index].getDescription}"),
-                          ),
-                          Row(
-                            children: [
-                              TextButton(
-                                onPressed: () {},
-                                child: Text("S"),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text("M"),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text("L"),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text("XL"),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Vorbestellen"),
-                          ),
-                          Text(
-                              "${products.data![index].getProductInformation}"),
-                        ],
+                      SizedBox(
+                        height: 500,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: 400,
+                              child: Text(
+                                  "${products.data![index].getDescription}"),
+                            ),
+                            SizeSelector(),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -102,6 +87,45 @@ class _ProductViewState extends State<ProductView> {
         }
         return const CircularProgressIndicator();
       },
+    );
+  }
+}
+
+class SizeSelector extends StatelessWidget {
+  const SizeSelector({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextButton(
+              onPressed: () {},
+              child: const Text("S"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text("M"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text("L"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text("XL"),
+            ),
+          ],
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: const Text("Vorbestellen"),
+        ),
+      ],
     );
   }
 }
