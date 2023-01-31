@@ -5,14 +5,14 @@
         "MainColor": "0xFFE8EF0D"
     },
     "2": {
-        "Product": "WastedPotential",
-        "Description": "Stellt euch vor, was wäre, wenn wir unser unerschöpfliches Potenzial voll ausschöpfen würden. Warum lassen wir es ungenutzt? Was würde passieren, wenn wir uns für ein paar Tage, Wochen oder sogar Monate mit vollem Einsatz dem Leben widmen würden? Warum halte ich mich zurück? Warum beschränke ich mich selbst? Man ist schon geboren, also gibt es kein zurück, warum dann nicht all-in?",
-        "MainColor": "0xFFFF2100"
-    },
-    "3": {
         "Product": "Reality",
         "Description": "Wake up to reality! Es ist Zeit, die Wahrheit über die Welt zu erkennen. Keine Illusionen mehr, keine Träume mehr, es ist Zeit, die Realität zu sehen. Klar, nichts läuft immer wie geplant, aber genau das macht das Leben spannend. Lass dich von Hindernissen nicht aufhalten, sondern nutze sie als Sprungbrett, um neue Höhen zu erreichen.",
         "MainColor": "0xFF39C28C"
+    },
+    "3": {
+        "Product": "WastedPotential",
+        "Description": "Stellt euch vor, was wäre, wenn wir unser unerschöpfliches Potenzial voll ausschöpfen würden. Warum lassen wir es ungenutzt? Was würde passieren, wenn wir uns für ein paar Tage, Wochen oder sogar Monate mit vollem Einsatz dem Leben widmen würden? Warum halte ich mich zurück? Warum beschränke ich mich selbst? Man ist schon geboren, also gibt es kein zurück, warum dann nicht all-in?",
+        "MainColor": "0xFFFF2100"
     },
     "4": {
         "Product": "WeirdTimes",

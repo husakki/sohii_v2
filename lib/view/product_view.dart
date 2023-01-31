@@ -18,11 +18,6 @@ class _ProductViewState extends State<ProductView> {
     ProductModel();
   }
 
-  //TODO make a sizeconfig in rootdir so I dont have to do this in every Screen
-  double get screenHeight => MediaQuery.of(context).size.height;
-
-  double get screenWidth => MediaQuery.of(context).size.width;
-
   @override
   Widget build(BuildContext context) {
     final ProductModel products = Get.put(ProductModel());
@@ -119,34 +114,46 @@ class SizeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text("S"),
+    return Container(
+      color: Colors.lightBlue,
+      child: Column(
+        children: [
+          Container(
+            color: Colors.orange,
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("S"),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("M"),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("L"),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("XL"),
+                ),
+              ],
             ),
-            TextButton(
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: 500,
+            height: 45,
+            child: ElevatedButton(
               onPressed: () {},
-              child: const Text("M"),
+              child: const Text("Vorbestellen"),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("L"),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("XL"),
-            ),
-          ],
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          child: const Text("Vorbestellen"),
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
