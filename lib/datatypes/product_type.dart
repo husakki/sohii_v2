@@ -12,7 +12,8 @@ class Product {
 
   get getDescription => _description;
 
-  get getProductInformation => _productInformation;
+  get getProductInformation =>
+      _productInformation; //* this is probably not needed anymore
 
   get getMainColour => int.parse(_mainColour);
 }
