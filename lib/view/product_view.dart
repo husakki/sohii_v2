@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:sohii_v2/datatypes/product_type.dart';
 import 'package:sohii_v2/model/product_model.dart';
@@ -107,11 +108,16 @@ class _ProductViewState extends State<ProductView> {
   }
 }
 
-class SizeSelector extends StatelessWidget {
+class SizeSelector extends StatefulWidget {
   const SizeSelector({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SizeSelector> createState() => _SizeSelectorState();
+}
+
+class _SizeSelectorState extends State<SizeSelector> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -121,22 +127,10 @@ class SizeSelector extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              TextButton(
-                onPressed: () {},
-                child: const Text("S"),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text("M"),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text("L"),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text("XL"),
-              ),
+              SizeButton(prodSize: "S"),
+              SizeButton(prodSize: "M"),
+              SizeButton(prodSize: "L"),
+              SizeButton(prodSize: "XL"),
             ],
           ),
         ),
@@ -152,6 +146,31 @@ class SizeSelector extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class SizeButton extends StatefulWidget {
+  final String prodSize;
+  const SizeButton({Key? key, required this.prodSize}) : super(key: key);
+  @override
+  State<SizeButton> createState() => _SizeButtonState();
+}
+
+class _SizeButtonState extends State<SizeButton> {
+  bool _toggle = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        setState(() {
+          _toggle = !_toggle;
+        });
+      },
+      child: Text(widget.prodSize)
+          .animate(target: _toggle ? 1 : 0)
+          .scaleXY(end: 2),
     );
   }
 }
