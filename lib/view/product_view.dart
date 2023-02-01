@@ -114,46 +114,44 @@ class SizeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.lightBlue,
-      child: Column(
-        children: [
-          Container(
-            color: Colors.orange,
-            child: Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("S"),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("M"),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("L"),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("XL"),
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        SizedBox(
+          width: 500,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: const Text("S"),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("M"),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("L"),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("XL"),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 20,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          width: 500,
+          height: 45,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text("Vorbestellen"),
           ),
-          SizedBox(
-            width: 500,
-            height: 45,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text("Vorbestellen"),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
