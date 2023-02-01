@@ -187,12 +187,12 @@ class _SizeButtonState extends State<SizeButton> {
                     .then()
                     .scaleXY(end: 1),
               ),
-              Positioned(
-                left: 10,
-                child: Container(
+              Container(
+                width: 10,
+                height: 10,
+                decoration: const BoxDecoration(
                   color: Colors.orange,
-                  width: 10,
-                  height: 10,
+                  shape: BoxShape.circle,
                 ),
               ),
             ],
