@@ -126,7 +126,7 @@ class _SizeSelectorState extends State<SizeSelector> {
           width: 500,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+            children: const [
               SizeButton(prodSize: "S"),
               SizeButton(prodSize: "M"),
               SizeButton(prodSize: "L"),
@@ -162,15 +162,41 @@ class _SizeButtonState extends State<SizeButton> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        setState(() {
-          _toggle = !_toggle;
-        });
-      },
-      child: Text(widget.prodSize)
-          .animate(target: _toggle ? 1 : 0)
-          .scaleXY(end: 2),
+    return MouseRegion(
+      cursor: MaterialStateMouseCursor.clickable,
+      child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _toggle = !_toggle;
+            });
+          },
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              SizedBox(
+                width: 40,
+                child: Text(
+                  widget.prodSize,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                )
+                    .animate(target: _toggle ? 1 : 0)
+                    .scaleXY(end: 2)
+                    .then()
+                    .scaleXY(end: 1),
+              ),
+              Positioned(
+                left: 10,
+                child: Container(
+                  color: Colors.orange,
+                  width: 10,
+                  height: 10,
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
