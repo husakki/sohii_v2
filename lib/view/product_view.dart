@@ -173,19 +173,12 @@ class _SizeButtonState extends State<SizeButton> {
           child: Stack(
             alignment: Alignment.topRight,
             children: [
-              SizedBox(
-                width: 40,
-                child: Text(
-                  widget.prodSize,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                )
-                    .animate(target: _toggle ? 1 : 0)
-                    .scaleXY(end: 2)
-                    .then()
-                    .scaleXY(end: 1),
+              Text(
+                widget.prodSize,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
               ),
               Container(
                 width: 10,
@@ -194,7 +187,11 @@ class _SizeButtonState extends State<SizeButton> {
                   color: Colors.orange,
                   shape: BoxShape.circle,
                 ),
-              ),
+              )
+                  .animate(target: _toggle ? 1 : 0)
+                  .scaleXY(end: 2)
+                  .then()
+                  .scaleXY(end: 1),
             ],
           )),
     );
