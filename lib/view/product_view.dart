@@ -151,26 +151,16 @@ class _SizeSelectorState extends State<SizeSelector> {
 }
 
 class SizeButton extends StatefulWidget {
-  final String prodSize;
   const SizeButton({Key? key, required this.prodSize}) : super(key: key);
+
+  final String prodSize;
+
   @override
   State<SizeButton> createState() => _SizeButtonState();
 }
 
-class _SizeButtonState extends State<SizeButton>
-    with SingleTickerProviderStateMixin {
+class _SizeButtonState extends State<SizeButton> {
   bool _toggle = false;
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this, // the SingleTickerProviderStateMixin
-      duration: const Duration(seconds: 1),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,10 +169,7 @@ class _SizeButtonState extends State<SizeButton>
       child: GestureDetector(
           onTap: () {
             setState(() {
-              _controller.forward();
-              _toggle = !_toggle;
-              print(_controller.value);
-              print(_toggle);
+              _toggle = true;
             });
           },
           child: Stack(
@@ -204,9 +191,11 @@ class _SizeButtonState extends State<SizeButton>
                 ),
               )
                   .animate(
-                    target: _controller.value,
+                    target: _toggle ? 1 : 0,
                     onComplete: (_) {
-                      _controller.reset();
+                      setState(() {
+                        _toggle = false;
+                      });
                     },
                   )
                   .fadeIn()
