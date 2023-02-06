@@ -157,8 +157,20 @@ class SizeButton extends StatefulWidget {
   State<SizeButton> createState() => _SizeButtonState();
 }
 
-class _SizeButtonState extends State<SizeButton> {
+class _SizeButtonState extends State<SizeButton>
+    with SingleTickerProviderStateMixin {
   bool _toggle = false;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this, // the SingleTickerProviderStateMixin
+      duration: const Duration(seconds: 1),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,11 +179,14 @@ class _SizeButtonState extends State<SizeButton> {
       child: GestureDetector(
           onTap: () {
             setState(() {
+              _controller.forward();
               _toggle = !_toggle;
+              print(_controller.value);
+              print(_toggle);
             });
           },
           child: Stack(
-            alignment: Alignment.topRight,
+            alignment: Alignment.center,
             children: [
               Text(
                 widget.prodSize,
@@ -181,17 +196,20 @@ class _SizeButtonState extends State<SizeButton> {
                 ),
               ),
               Container(
-                width: 10,
-                height: 10,
+                width: 30,
+                height: 30,
                 decoration: const BoxDecoration(
                   color: Colors.orange,
                   shape: BoxShape.circle,
                 ),
               )
-                  .animate(target: _toggle ? 1 : 0)
-                  .scaleXY(end: 2)
-                  .then()
-                  .scaleXY(end: 1),
+                  .animate(
+                    target: _controller.value,
+                    onComplete: (_) {
+                      _controller.reset();
+                    },
+                  )
+                  .fadeIn()
             ],
           )),
     );
