@@ -168,7 +168,20 @@ class _SizeButtonState extends State<SizeButton>
     super.initState();
     _controller = AnimationController(
       vsync: this,
+      value: 0,
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _startAnimation() {
+    setState(() {
+      _controller.forward();
+    });
   }
 
   @override
@@ -177,9 +190,7 @@ class _SizeButtonState extends State<SizeButton>
       cursor: MaterialStateMouseCursor.clickable,
       child: GestureDetector(
           onTap: () {
-            setState(() {
-              _controller.forward();
-            });
+            _startAnimation();
           },
           child: Stack(
             alignment: Alignment.center,
@@ -201,7 +212,7 @@ class _SizeButtonState extends State<SizeButton>
               )
                   .animate(
                     controller: _controller,
-                    onComplete: (controller) => _controller.reset(),
+                    onComplete: (controller) => controller.reset(),
                   )
                   .fadeIn(duration: 300.ms)
                   .slideY(end: -2)
