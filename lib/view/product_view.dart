@@ -159,8 +159,20 @@ class SizeButton extends StatefulWidget {
   State<SizeButton> createState() => _SizeButtonState();
 }
 
-class _SizeButtonState extends State<SizeButton> {
+class _SizeButtonState extends State<SizeButton>
+    with SingleTickerProviderStateMixin {
   bool _toggle = false;
+
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +181,8 @@ class _SizeButtonState extends State<SizeButton> {
       child: GestureDetector(
           onTap: () {
             setState(() {
-              _toggle = true;
+              _toggle = !_toggle;
+              _controller.forward();
             });
           },
           child: Stack(
@@ -191,14 +204,15 @@ class _SizeButtonState extends State<SizeButton> {
                 ),
               )
                   .animate(
-                    target: _toggle ? 1 : 0,
-                    onComplete: (_) {
-                      setState(() {
-                        _toggle = false;
-                      });
-                    },
+                    // target: _toggle ? 1 : 0,
+                    controller: _controller,
+                    onPlay: (controller) => controller.forward(),
+                    onComplete: (controller) => _controller.reset(),
                   )
-                  .fadeIn()
+                  .fadeIn(duration: 300.ms)
+                  .slideY(end: -2)
+                  .then()
+                  .fadeOut()
             ],
           )),
     );
