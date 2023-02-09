@@ -162,6 +162,7 @@ class SizeButton extends StatefulWidget {
 class _SizeButtonState extends State<SizeButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  bool buildYet = false;
 
   @override
   void initState() {
@@ -180,6 +181,7 @@ class _SizeButtonState extends State<SizeButton>
 
   void _startAnimation() {
     setState(() {
+      buildYet = true;
       _controller.forward();
     });
   }
@@ -209,10 +211,16 @@ class _SizeButtonState extends State<SizeButton>
                   color: Colors.orange,
                   shape: BoxShape.circle,
                 ),
+                child: const Center(child: Text("+1")),
               )
                   .animate(
                     controller: _controller,
-                    onComplete: (controller) => controller.reset(),
+                    onPlay: (controller) {
+                      if (!buildYet) controller.stop();
+                    },
+                    onComplete: (controller) {
+                      controller.reset();
+                    },
                   )
                   .fadeIn(duration: 300.ms)
                   .slideY(end: -2)
