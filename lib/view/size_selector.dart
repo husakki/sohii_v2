@@ -28,7 +28,7 @@ class _SizeSelectorState extends State<SizeSelector> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 42, // ~ there is just something about that number ~ Hdonger
         ),
         SizedBox(
           width: 500,
