@@ -19,6 +19,8 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   int xlCount = 0;
 
+  get sum => sCount + mCount + lCount + xlCount;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +79,7 @@ class _SizeSelectorState extends State<SizeSelector> {
             onPressed: () {
               print(sCount);
             },
-            child: const Text("Vorbestellen"),
+            child: Text("Vorbestellen ($sum)"),
           ),
         ),
       ],
