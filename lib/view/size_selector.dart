@@ -21,6 +21,20 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   get sum => sCount + mCount + lCount + xlCount;
 
+  /*
+  Problem is that flutter_animate is not fully developed in my optinon, 
+  as fas as I have experience there are some big flaws,
+
+  Current problem is when using a setState for some reason
+  all other animations also start.
+
+  Solution:
+
+  opt1: try it with getx object instead of setState
+  opt2: delete flutter_animate Stuff and do your own animation.
+  opt3: analsze the error and find a way to avoid this.
+  */
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,11 +56,7 @@ class _SizeSelectorState extends State<SizeSelector> {
               SizeButton(
                 prodSize: "M",
                 counter: mCount,
-                onChanged: (value) {
-                  setState(() {
-                    mCount = value;
-                  });
-                },
+                onChanged: (value) {}, //! this fixed the issue
               ),
               SizeButton(
                 prodSize: "L",
@@ -145,18 +155,20 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
     setState(() {
       isAddPress = true;
       isBuild = true;
+      print("add Press");
       _addController.forward();
-      widget.onChanged(widget.counter += 1);
     });
+    widget.onChanged(widget.counter += 1);
   }
 
   void _removeOne() {
     setState(() {
       isRemPress = true;
       isBuild = true;
+      print("rem Press");
       _removeController.forward();
-      widget.onChanged(widget.counter -= 1);
     });
+    widget.onChanged(widget.counter -= 1);
   }
 
   @override
