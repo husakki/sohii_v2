@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class SizeSelector extends StatelessWidget {
-  const SizeSelector({Key? key, required this.product}) : super(key: key);
+// TODO make all vals with underscore
+class SizeSelector extends StatefulWidget {
+  SizeSelector({Key? key, required this.product}) : super(key: key);
   final String? product;
+
+  @override
+  State<SizeSelector> createState() => _SizeSelectorState();
+}
+
+class _SizeSelectorState extends State<SizeSelector> {
+  int sCount = 0;
+
+  int mCount = 0;
+
+  int lCount = 0;
+
+  int xlCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +27,23 @@ class SizeSelector extends StatelessWidget {
           width: 500,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              SizeButton(prodSize: "S"),
-              SizeButton(prodSize: "M"),
-              SizeButton(prodSize: "L"),
-              SizeButton(prodSize: "XL"),
+            children: [
+              SizeButton(
+                prodSize: "S",
+                counter: sCount,
+              ),
+              SizeButton(
+                prodSize: "M",
+                counter: mCount,
+              ),
+              SizeButton(
+                prodSize: "L",
+                counter: lCount,
+              ),
+              SizeButton(
+                prodSize: "XL",
+                counter: xlCount,
+              ),
             ],
           ),
         ),
@@ -28,7 +54,9 @@ class SizeSelector extends StatelessWidget {
           width: 500,
           height: 45,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              print(sCount);
+            },
             child: const Text("Vorbestellen"),
           ),
         ),
@@ -38,9 +66,11 @@ class SizeSelector extends StatelessWidget {
 }
 
 class SizeButton extends StatefulWidget {
-  const SizeButton({Key? key, required this.prodSize}) : super(key: key);
+  SizeButton({Key? key, required this.prodSize, required this.counter})
+      : super(key: key);
 
   final String prodSize;
+  int counter;
 
   @override
   State<SizeButton> createState() => _SizeButtonState();
@@ -79,6 +109,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isAddPress = true;
       isBuild = true;
       _addController.forward();
+      widget.counter++;
     });
   }
 
@@ -87,6 +118,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isRemPress = true;
       isBuild = true;
       _removeController.forward();
+      widget.counter--;
     });
   }
 
