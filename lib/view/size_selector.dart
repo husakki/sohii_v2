@@ -31,18 +31,38 @@ class _SizeSelectorState extends State<SizeSelector> {
               SizeButton(
                 prodSize: "S",
                 counter: sCount,
+                onChanged: (value) {
+                  setState(() {
+                    sCount = value;
+                  });
+                },
               ),
               SizeButton(
                 prodSize: "M",
                 counter: mCount,
+                onChanged: (value) {
+                  setState(() {
+                    mCount = value;
+                  });
+                },
               ),
               SizeButton(
                 prodSize: "L",
                 counter: lCount,
+                onChanged: (value) {
+                  setState(() {
+                    lCount = value;
+                  });
+                },
               ),
               SizeButton(
                 prodSize: "XL",
                 counter: xlCount,
+                onChanged: (value) {
+                  setState(() {
+                    xlCount = value;
+                  });
+                },
               ),
             ],
           ),
@@ -66,11 +86,17 @@ class _SizeSelectorState extends State<SizeSelector> {
 }
 
 class SizeButton extends StatefulWidget {
-  SizeButton({Key? key, required this.prodSize, required this.counter})
+  SizeButton(
+      {Key? key,
+      required this.prodSize,
+      required this.counter,
+      required this.onChanged})
       : super(key: key);
 
   final String prodSize;
+
   int counter;
+  final ValueChanged<int> onChanged;
 
   @override
   State<SizeButton> createState() => _SizeButtonState();
@@ -109,7 +135,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isAddPress = true;
       isBuild = true;
       _addController.forward();
-      widget.counter++;
+      widget.onChanged(widget.counter += 1);
     });
   }
 
@@ -118,7 +144,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isRemPress = true;
       isBuild = true;
       _removeController.forward();
-      widget.counter--;
+      widget.onChanged(widget.counter -= 1);
     });
   }
 
