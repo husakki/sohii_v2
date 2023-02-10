@@ -188,7 +188,6 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   }
 
   void _addOne() {
-    print("invoked add");
     setState(() {
       isAddPress = true;
       isBuild = true;
@@ -197,7 +196,6 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   }
 
   void _removeOne() {
-    print("invoked remove");
     setState(() {
       isRemPress = true;
       isBuild = true;
