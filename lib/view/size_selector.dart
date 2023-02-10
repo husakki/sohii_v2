@@ -77,13 +77,22 @@ class _SizeSelectorState extends State<SizeSelector> {
           height: 45,
           child: ElevatedButton(
             onPressed: () {
-              print(sCount);
+              reset();
             },
             child: Text("Vorbestellen ($sum)"),
           ),
         ),
       ],
     );
+  }
+
+  void reset() {
+    setState(() {
+      sCount = 0;
+      mCount = 0;
+      lCount = 0;
+      xlCount = 0;
+    });
   }
 }
 
