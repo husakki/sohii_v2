@@ -159,15 +159,22 @@ class SizeButton extends StatefulWidget {
   State<SizeButton> createState() => _SizeButtonState();
 }
 
-class _SizeButtonState extends State<SizeButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  bool buildYet = false;
+class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
+  late AnimationController _addController;
+  late AnimationController _removeController;
+  // compensation for flutter_animate package
+  bool isBuild = false;
+  bool isAddPress = false;
+  bool isRemPress = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _addController = AnimationController(
+      vsync: this,
+      value: 0,
+    );
+    _removeController = AnimationController(
       vsync: this,
       value: 0,
     );
@@ -175,14 +182,26 @@ class _SizeButtonState extends State<SizeButton>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _addController.dispose();
+    _removeController.dispose();
     super.dispose();
   }
 
-  void _startAnimation() {
+  void _addOne() {
+    print("invoked add");
     setState(() {
-      buildYet = true;
-      _controller.forward();
+      isAddPress = true;
+      isBuild = true;
+      _addController.forward();
+    });
+  }
+
+  void _removeOne() {
+    print("invoked remove");
+    setState(() {
+      isRemPress = true;
+      isBuild = true;
+      _removeController.forward();
     });
   }
 
@@ -192,10 +211,10 @@ class _SizeButtonState extends State<SizeButton>
       cursor: MaterialStateMouseCursor.clickable,
       child: GestureDetector(
           onTap: () {
-            _startAnimation();
+            _addOne();
           },
           onLongPress: () {
-            print("pressed long");
+            _removeOne();
           },
           child: Stack(
             alignment: Alignment.center,
@@ -209,16 +228,32 @@ class _SizeButtonState extends State<SizeButton>
               ),
               const Center(child: Text("+1"))
                   .animate(
-                    controller: _controller,
+                    controller: _addController,
                     onPlay: (controller) {
-                      if (!buildYet) controller.stop();
+                      if (!isBuild || isRemPress) controller.stop();
                     },
                     onComplete: (controller) {
                       controller.reset();
+                      isAddPress = false;
                     },
                   )
                   .fadeIn(duration: 300.ms)
                   .slideY(end: -2)
+                  .then()
+                  .fadeOut(),
+              const Center(child: Text("-1"))
+                  .animate(
+                    controller: _removeController,
+                    onPlay: (controller) {
+                      if (!isBuild || isAddPress) _removeController.stop();
+                    },
+                    onComplete: (controller) {
+                      _removeController.reset();
+                      isRemPress = false;
+                    },
+                  )
+                  .fadeIn(duration: 300.ms)
+                  .slideY(end: 2)
                   .then()
                   .fadeOut()
             ],
