@@ -90,7 +90,8 @@ class _ProductViewState extends State<ProductView> {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            const SizeSelector(),
+                            SizeSelector(
+                                product: products.data![index].getProduct),
                           ],
                         ),
                       ),

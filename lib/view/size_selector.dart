@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class SizeSelector extends StatefulWidget {
-  const SizeSelector({
-    Key? key,
-  }) : super(key: key);
+class SizeSelector extends StatelessWidget {
+  const SizeSelector({Key? key, required this.product}) : super(key: key);
+  final String? product;
 
-  @override
-  State<SizeSelector> createState() => _SizeSelectorState();
-}
-
-class _SizeSelectorState extends State<SizeSelector> {
   @override
   Widget build(BuildContext context) {
     return Column(
