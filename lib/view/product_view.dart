@@ -194,6 +194,9 @@ class _SizeButtonState extends State<SizeButton>
           onTap: () {
             _startAnimation();
           },
+          onLongPress: () {
+            print("pressed long");
+          },
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -204,15 +207,7 @@ class _SizeButtonState extends State<SizeButton>
                   fontSize: 20,
                 ),
               ),
-              Container(
-                width: 30,
-                height: 30,
-                decoration: const BoxDecoration(
-                  color: Colors.orange,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(child: Text("+1")),
-              )
+              const Center(child: Text("+1"))
                   .animate(
                     controller: _controller,
                     onPlay: (controller) {
