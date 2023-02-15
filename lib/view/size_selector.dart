@@ -135,9 +135,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _addController = AnimationController(
-      vsync: this,
-      value: 0,
-    );
+        vsync: this, value: 0, duration: const Duration(seconds: 1));
     _removeController = AnimationController(
       vsync: this,
       value: 0,
@@ -156,7 +154,8 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isAddPress = true;
       isBuild = true;
       print("add Press");
-      _addController.forward();
+      TickerFuture tmp = _addController.forward();
+      tmp.whenComplete(() => _addController.reset());
     });
     widget.onChanged(widget.counter += 1);
   }
@@ -192,21 +191,16 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
                   fontSize: 20,
                 ),
               ),
-              const Center(child: Text("+1"))
-                  .animate(
-                    controller: _addController,
-                    onPlay: (controller) {
-                      if (!isBuild || isRemPress) controller.stop();
-                    },
-                    onComplete: (controller) {
-                      controller.reset();
-                      isAddPress = false;
-                    },
-                  )
-                  .fadeIn(duration: 300.ms)
-                  .slideY(end: -2)
-                  .then()
-                  .fadeOut(),
+              AnimatedBuilder(
+                animation: _addController,
+                builder: (context, _) {
+                  double slideUp = -30 * _addController.value;
+                  return Transform.translate(
+                    offset: Offset(0, slideUp),
+                    child: const Text("+1"),
+                  );
+                },
+              ),
               const Center(child: Text("-1"))
                   .animate(
                     controller: _removeController,
