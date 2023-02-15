@@ -20,7 +20,7 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   RxInt xlCount = 0.obs;
 
-  // get sum => sCount + mCount + lCount + xlCount;
+  get sum => sCount.value + mCount.value + lCount.value + xlCount.value;
 
   /*
   Problem is that flutter_animate is not fully developed in my optinon, 
@@ -74,7 +74,7 @@ class _SizeSelectorState extends State<SizeSelector> {
             onPressed: () {
               reset();
             },
-            child: Text("Vorbestellen NaN"),
+            child: Text("Vorbestellen ($sum)"),
           ),
         ),
       ],
