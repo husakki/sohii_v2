@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 // TODO make all vals with underscore
 class SizeSelector extends StatefulWidget {
@@ -11,15 +12,15 @@ class SizeSelector extends StatefulWidget {
 }
 
 class _SizeSelectorState extends State<SizeSelector> {
-  int sCount = 0;
+  RxInt sCount = 0.obs;
 
-  int mCount = 0;
+  RxInt mCount = 0.obs;
 
-  int lCount = 0;
+  RxInt lCount = 0.obs;
 
-  int xlCount = 0;
+  RxInt xlCount = 0.obs;
 
-  get sum => sCount + mCount + lCount + xlCount;
+  // get sum => sCount + mCount + lCount + xlCount;
 
   /*
   Problem is that flutter_animate is not fully developed in my optinon, 
@@ -47,34 +48,18 @@ class _SizeSelectorState extends State<SizeSelector> {
               SizeButton(
                 prodSize: "S",
                 counter: sCount,
-                onChanged: (value) {
-                  setState(() {
-                    sCount = value;
-                  });
-                },
               ),
               SizeButton(
                 prodSize: "M",
                 counter: mCount,
-                onChanged: (value) {}, //! this fixed the issue
               ),
               SizeButton(
                 prodSize: "L",
                 counter: lCount,
-                onChanged: (value) {
-                  setState(() {
-                    lCount = value;
-                  });
-                },
               ),
               SizeButton(
                 prodSize: "XL",
                 counter: xlCount,
-                onChanged: (value) {
-                  setState(() {
-                    xlCount = value;
-                  });
-                },
               ),
             ],
           ),
@@ -89,7 +74,7 @@ class _SizeSelectorState extends State<SizeSelector> {
             onPressed: () {
               reset();
             },
-            child: Text("Vorbestellen ($sum)"),
+            child: Text("Vorbestellen NaN"),
           ),
         ),
       ],
@@ -98,26 +83,22 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   void reset() {
     setState(() {
-      sCount = 0;
-      mCount = 0;
-      lCount = 0;
-      xlCount = 0;
+      print(sCount);
+      sCount = RxInt(0);
+      mCount = RxInt(0);
+      lCount = RxInt(0);
+      xlCount = RxInt(0);
     });
   }
 }
 
 class SizeButton extends StatefulWidget {
-  SizeButton(
-      {Key? key,
-      required this.prodSize,
-      required this.counter,
-      required this.onChanged})
+  SizeButton({Key? key, required this.prodSize, required this.counter})
       : super(key: key);
 
   final String prodSize;
 
-  int counter;
-  final ValueChanged<int> onChanged;
+  RxInt counter;
 
   @override
   State<SizeButton> createState() => _SizeButtonState();
@@ -158,7 +139,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       print("add Press");
       _addController.forward();
     });
-    widget.onChanged(widget.counter += 1);
+    widget.counter += 1;
   }
 
   void _removeOne() {
@@ -168,7 +149,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       print("rem Press");
       _removeController.forward();
     });
-    widget.onChanged(widget.counter -= 1);
+    widget.counter -= 1;
   }
 
   @override
