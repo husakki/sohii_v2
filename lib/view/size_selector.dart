@@ -195,9 +195,13 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
                 animation: _addController,
                 builder: (context, _) {
                   double slideUp = -30 * _addController.value;
+                  double opacity = _addController.value;
                   return Transform.translate(
                     offset: Offset(0, slideUp),
-                    child: const Text("+1"),
+                    child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: const Text("+1")),
                   );
                 },
               ),
