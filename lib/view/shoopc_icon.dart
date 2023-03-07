@@ -31,6 +31,7 @@ class _ShoppingCartIconState extends State<ShoppingCartIcon> {
               color: Colors.orange,
               borderRadius: BorderRadius.circular(50.0),
             ),
+            child: const Center(child: Text("10")),
           ),
         ),
       ],
