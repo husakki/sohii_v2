@@ -37,7 +37,16 @@ class _ScreenMainState extends State<ScreenMain> {
       body: Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.none,
-        children: [
+        children: const [
+          Positioned(
+            top: 30.0,
+            right: 30.0,
+            child: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: 35.0,
+            ),
+          ),
           // Positioned(
           //   top: screenHeight * 0.2,
           //   width: screenWidth,
