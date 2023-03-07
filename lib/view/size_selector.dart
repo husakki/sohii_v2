@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // TODO make all vals with underscore
 class SizeSelector extends StatefulWidget {
   SizeSelector({Key? key, required this.product}) : super(key: key);
+
   final String? product;
 
   @override
@@ -10,15 +11,21 @@ class SizeSelector extends StatefulWidget {
 }
 
 class _SizeSelectorState extends State<SizeSelector> {
-  int sCount = 0;
-
-  int mCount = 0;
-
   int lCount = 0;
-
+  int mCount = 0;
+  int sCount = 0;
   int xlCount = 0;
 
   get sum => sCount + mCount + lCount + xlCount;
+
+  void reset() {
+    setState(() {
+      sCount = 0;
+      mCount = 0;
+      lCount = 0;
+      xlCount = 0;
+    });
+  }
 
   /*
   Problem is that flutter_animate is not fully developed in my optinon, 
@@ -98,15 +105,6 @@ class _SizeSelectorState extends State<SizeSelector> {
       ],
     );
   }
-
-  void reset() {
-    setState(() {
-      sCount = 0;
-      mCount = 0;
-      lCount = 0;
-      xlCount = 0;
-    });
-  }
 }
 
 class SizeButton extends StatefulWidget {
@@ -117,10 +115,9 @@ class SizeButton extends StatefulWidget {
       required this.onChanged})
       : super(key: key);
 
-  final String prodSize;
-
   int counter;
   final ValueChanged<int> onChanged;
+  final String prodSize;
 
   @override
   State<SizeButton> createState() => _SizeButtonState();
@@ -131,19 +128,19 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   late AnimationController _removeController;
 
   @override
+  void dispose() {
+    _addController.dispose();
+    _removeController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     _addController = AnimationController(
         vsync: this, value: 0, duration: const Duration(seconds: 1));
     _removeController = AnimationController(
         vsync: this, value: 0, duration: const Duration(seconds: 1));
-  }
-
-  @override
-  void dispose() {
-    _addController.dispose();
-    _removeController.dispose();
-    super.dispose();
   }
 
   void _addOne() {
