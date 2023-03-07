@@ -129,10 +129,6 @@ class SizeButton extends StatefulWidget {
 class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   late AnimationController _addController;
   late AnimationController _removeController;
-  // compensation for flutter_animate package
-  bool isBuild = false;
-  bool isAddPress = false;
-  bool isRemPress = false;
 
   @override
   void initState() {
@@ -152,8 +148,6 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
 
   void _addOne() {
     setState(() {
-      isAddPress = true;
-      isBuild = true;
       print("add Press");
       TickerFuture tmp = _addController.forward();
       tmp.whenComplete(() => _addController.reset());
@@ -162,14 +156,17 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
   }
 
   void _removeOne() {
-    setState(() {
-      isRemPress = true;
-      isBuild = true;
-      print("rem Press");
-      TickerFuture tmp = _removeController.forward();
-      tmp.whenComplete(() => _removeController.reset());
-    });
-    widget.onChanged(widget.counter -= 1);
+    if (widget.counter > 0) {
+      setState(() {
+        print("rem Press");
+        TickerFuture tmp = _removeController.forward();
+        tmp.whenComplete(() => _removeController.reset());
+      });
+      widget.onChanged(widget.counter -= 1);
+    } else {
+      //TODO add an animation for this aswell!
+      print("value to small");
+    }
   }
 
   @override
@@ -193,6 +190,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
                   fontSize: 20,
                 ),
               ),
+              //TODO make the animation smoother and nicer etc.
               AnimatedBuilder(
                 animation: _addController,
                 builder: (context, _) {
