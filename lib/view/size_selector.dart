@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 // TODO make all vals with underscore
 class SizeSelector extends StatefulWidget {
@@ -56,7 +55,11 @@ class _SizeSelectorState extends State<SizeSelector> {
               SizeButton(
                 prodSize: "M",
                 counter: mCount,
-                onChanged: (value) {}, //! this fixed the issue
+                onChanged: (value) {
+                  setState(() {
+                    mCount = value;
+                  });
+                },
               ),
               SizeButton(
                 prodSize: "L",
@@ -137,9 +140,7 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
     _addController = AnimationController(
         vsync: this, value: 0, duration: const Duration(seconds: 1));
     _removeController = AnimationController(
-      vsync: this,
-      value: 0,
-    );
+        vsync: this, value: 0, duration: const Duration(seconds: 1));
   }
 
   @override
@@ -165,7 +166,8 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
       isRemPress = true;
       isBuild = true;
       print("rem Press");
-      _removeController.forward();
+      TickerFuture tmp = _removeController.forward();
+      tmp.whenComplete(() => _removeController.reset());
     });
     widget.onChanged(widget.counter -= 1);
   }
@@ -205,21 +207,20 @@ class _SizeButtonState extends State<SizeButton> with TickerProviderStateMixin {
                   );
                 },
               ),
-              const Center(child: Text("-1"))
-                  .animate(
-                    controller: _removeController,
-                    onPlay: (controller) {
-                      if (!isBuild || isAddPress) _removeController.stop();
-                    },
-                    onComplete: (controller) {
-                      _removeController.reset();
-                      isRemPress = false;
-                    },
-                  )
-                  .fadeIn(duration: 300.ms)
-                  .slideY(end: 2)
-                  .then()
-                  .fadeOut()
+              AnimatedBuilder(
+                animation: _removeController,
+                builder: (context, _) {
+                  double slideUp = 30 * _removeController.value;
+                  double opacity = _removeController.value;
+                  return Transform.translate(
+                    offset: Offset(0, slideUp),
+                    child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: const Text("-1")),
+                  );
+                },
+              ),
             ],
           )),
     );
