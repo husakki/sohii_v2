@@ -9,7 +9,6 @@ class ScreenMain extends StatefulWidget {
 }
 
 class _ScreenMainState extends State<ScreenMain> {
-  //TODO make a sizeconfig in rootdir so I dont have to do this in every Screen
   late ScrollController _scrollController;
 
   double get screenHeight => MediaQuery.of(context).size.height;
