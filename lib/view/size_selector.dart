@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sohii_v2/model/shopping_cart.dart';
+
+import '../datatypes/size.dart';
 
 // TODO make all vals with underscore
 class SizeSelector extends StatefulWidget {
@@ -18,7 +22,7 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   get sum => sCount + mCount + lCount + xlCount;
 
-  void reset() {
+  void vorbestellReset() {
     setState(() {
       sCount = 0;
       mCount = 0;
@@ -43,6 +47,8 @@ class _SizeSelectorState extends State<SizeSelector> {
 
   @override
   Widget build(BuildContext context) {
+    final ShoppingCart sc = Get.put(ShoppingCart());
+
     return Column(
       children: [
         SizedBox(
@@ -97,7 +103,10 @@ class _SizeSelectorState extends State<SizeSelector> {
           height: 45,
           child: ElevatedButton(
             onPressed: () {
-              reset();
+              var tmp =
+                  Item(product: widget.product!, size: Size.S, amount: sCount);
+              sc.items.add(tmp);
+              vorbestellReset();
             },
             child: Text("Vorbestellen ($sum)"),
           ),
