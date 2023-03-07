@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sohii_v2/view/product_view.dart';
+import 'package:sohii_v2/view/shoopc_icon.dart';
 
 class ScreenMain extends StatefulWidget {
   const ScreenMain({Key? key}) : super(key: key);
@@ -37,15 +38,7 @@ class _ScreenMainState extends State<ScreenMain> {
         alignment: Alignment.center,
         clipBehavior: Clip.none,
         children: const [
-          Positioned(
-            top: 30.0,
-            right: 30.0,
-            child: Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
-              size: 35.0,
-            ),
-          ),
+          ShoppingCartIcon(),
           // Positioned(
           //   top: screenHeight * 0.2,
           //   width: screenWidth,
