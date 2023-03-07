@@ -38,7 +38,11 @@ class _ScreenMainState extends State<ScreenMain> {
         alignment: Alignment.center,
         clipBehavior: Clip.none,
         children: const [
-          ShoppingCartIcon(),
+          Positioned(
+            top: 30.0,
+            right: 30.0,
+            child: ShoppingCartIcon(),
+          ),
           // Positioned(
           //   top: screenHeight * 0.2,
           //   width: screenWidth,
