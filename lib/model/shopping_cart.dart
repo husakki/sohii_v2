@@ -53,6 +53,9 @@ class ShoppingCart extends GetxController {
         totalAmount += element.amount;
       }
     }
+    _items.removeWhere((element) =>
+        element.product == newItem.product && element.size == newItem.size);
+
     totalAmount += newItem.amount;
 
     tmp =
