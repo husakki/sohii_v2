@@ -105,7 +105,7 @@ class _SizeSelectorState extends State<SizeSelector> {
             onPressed: () {
               var tmp =
                   Item(product: widget.product!, size: Size.S, amount: sCount);
-              sc.items.add(tmp);
+              sc.addToCart(tmp);
               vorbestellReset();
             },
             child: Text("Vorbestellen ($sum)"),
