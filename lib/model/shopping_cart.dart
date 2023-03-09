@@ -47,17 +47,19 @@ class ShoppingCart extends GetxController {
   Item groupSameItems(Item newItem) {
     Item tmp;
     int totalAmount = 0;
-
+    // sum of all in the list
     for (Item element in _items) {
       if (element.product == newItem.product && element.size == newItem.size) {
         totalAmount += element.amount;
       }
     }
-    _items.removeWhere((element) =>
-        element.product == newItem.product && element.size == newItem.size);
-
+    // add the new one
     totalAmount += newItem.amount;
 
+    //remove dups from the list
+    _items.removeWhere((element) =>
+        element.product == newItem.product && element.size == newItem.size);
+    // create new item
     tmp =
         Item(product: newItem.product, size: newItem.size, amount: totalAmount);
 
