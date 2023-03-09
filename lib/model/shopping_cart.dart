@@ -17,9 +17,13 @@ class ShoppingCart extends GetxController {
   }
 
   void addToCart(Item newItem) {
-    if (notContainsProductAndSize(newItem)) {
+    if (containsProductAndSize(newItem)) {
+      Item tmp = groupSameItems(newItem);
+      _items.add(tmp);
+    } else {
+      // just add it
       _items.add(newItem);
-    } else {}
+    }
 
     printItems();
   }
@@ -30,8 +34,31 @@ class ShoppingCart extends GetxController {
     }
   }
 
-  bool notContainsProductAndSize(Item newItem) {
-    return true;
+  bool containsProductAndSize(Item newItem) {
+    bool result = false;
+    for (Item element in _items) {
+      if (element.product == newItem.product && element.size == newItem.size) {
+        return true;
+      }
+    }
+    return result;
+  }
+
+  Item groupSameItems(Item newItem) {
+    Item tmp;
+    int totalAmount = 0;
+
+    for (Item element in _items) {
+      if (element.product == newItem.product && element.size == newItem.size) {
+        totalAmount += element.amount;
+      }
+    }
+    totalAmount += newItem.amount;
+
+    tmp =
+        Item(product: newItem.product, size: newItem.size, amount: totalAmount);
+
+    return tmp;
   }
 }
 
