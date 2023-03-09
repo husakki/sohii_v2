@@ -6,7 +6,13 @@ class ShoppingCart extends GetxController {
   List<Item> items = <Item>[].obs;
 
   int get numbOfItems {
-    return items.length;
+    int result = 0;
+
+    for (Item item in items) {
+      result += item.amount;
+    }
+
+    return result;
   }
 }
 
