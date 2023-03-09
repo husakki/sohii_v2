@@ -35,7 +35,7 @@ class _ShoppingCartIconState extends State<ShoppingCartIcon> {
               color: Colors.orange,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Center(child: Obx(() => Text("${sc.items.length}"))),
+            child: Center(child: Obx(() => Text("${sc.numbOfItems}"))),
           ),
         ),
       ],

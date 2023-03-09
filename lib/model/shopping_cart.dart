@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
 
 import '../datatypes/size.dart';
@@ -7,7 +6,7 @@ class ShoppingCart extends GetxController {
   List<Item> items = <Item>[].obs;
 
   int get numbOfItems {
-    return 1;
+    return items.length;
   }
 }
 
