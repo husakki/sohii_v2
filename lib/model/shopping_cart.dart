@@ -17,19 +17,21 @@ class ShoppingCart extends GetxController {
   }
 
   void addToCart(Item newItem) {
-    _items.add(newItem);
-    print(_items);
+    if (notContainsProductAndSize(newItem)) {
+      _items.add(newItem);
+    } else {}
+
+    printItems();
   }
 
-  //TODO fix needed
-  //! This is probly bad. please fix it
-  @override
-  String toString() {
-    String tmp = "";
+  void printItems() {
     for (Item element in _items) {
-      tmp += element.toString();
+      print(element);
     }
-    return tmp;
+  }
+
+  bool notContainsProductAndSize(Item newItem) {
+    return true;
   }
 }
 
