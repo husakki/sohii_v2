@@ -31,20 +31,6 @@ class _SizeSelectorState extends State<SizeSelector> {
     });
   }
 
-  /*
-  Problem is that flutter_animate is not fully developed in my optinon, 
-  as fas as I have experience there are some big flaws,
-
-  Current problem is when using a setState for some reason
-  all other animations also start.
-
-  Solution:
-
-  opt1: try it with getx object instead of setState
-  opt2: delete flutter_animate Stuff and do your own animation.
-  opt3: analsze the error and find a way to avoid this.
-  */
-
   @override
   Widget build(BuildContext context) {
     final ShoppingCart sc = Get.put(ShoppingCart());
