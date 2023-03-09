@@ -89,6 +89,7 @@ class _SizeSelectorState extends State<SizeSelector> {
           height: 45,
           child: ElevatedButton(
             onPressed: () {
+              //TODO needs fixing!
               var tmp =
                   Item(product: widget.product!, size: Size.S, amount: sCount);
               sc.addToCart(tmp);
