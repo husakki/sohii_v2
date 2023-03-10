@@ -23,8 +23,6 @@ class ShoppingCart extends GetxController {
       // just add it
       _items.add(newItem);
     }
-
-    printItems();
   }
 
   void printItems() {

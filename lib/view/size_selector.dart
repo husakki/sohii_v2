@@ -89,10 +89,23 @@ class _SizeSelectorState extends State<SizeSelector> {
           height: 45,
           child: ElevatedButton(
             onPressed: () {
-              //TODO needs fixing!
-              var tmp =
-                  Item(product: widget.product!, size: Size.S, amount: sCount);
-              sc.addToCart(tmp);
+              if (sCount > 0) {
+                sc.addToCart(Item(
+                    product: widget.product!, size: Size.S, amount: sCount));
+              }
+              if (mCount > 0) {
+                sc.addToCart(Item(
+                    product: widget.product!, size: Size.M, amount: mCount));
+              }
+              if (lCount > 0) {
+                sc.addToCart(Item(
+                    product: widget.product!, size: Size.L, amount: lCount));
+              }
+              if (xlCount > 0) {
+                sc.addToCart(Item(
+                    product: widget.product!, size: Size.XL, amount: xlCount));
+              }
+              sc.printItems();
               vorbestellReset();
             },
             child: Text("Vorbestellen ($sum)"),
