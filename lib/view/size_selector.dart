@@ -98,6 +98,22 @@ class _SizeSelectorState extends State<SizeSelector> {
             child: Text("Vorbestellen ($sum)"),
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          width: 100,
+          height: 25,
+          child: ElevatedButton(
+            onPressed: () {
+              vorbestellReset();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+            ),
+            child: const Text("Reset"),
+          ),
+        ),
       ],
     );
   }
