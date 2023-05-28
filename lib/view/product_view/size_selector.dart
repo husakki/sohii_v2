@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sohii_v2/model/shopping_cart.dart';
 
-import '../datatypes/size.dart';
+import '../../datatypes/size.dart';
 
 // TODO make all vals with underscore
 class SizeSelector extends StatefulWidget {

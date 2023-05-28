@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sohii_v2/view/product_view.dart';
-import 'package:sohii_v2/view/shoopc_icon.dart';
+import 'package:sohii_v2/view/product_view/product_view.dart';
+import 'package:sohii_v2/view/product_view/shoopc_icon.dart';
 
 class ScreenMain extends StatefulWidget {
   const ScreenMain({Key? key}) : super(key: key);
@@ -66,8 +66,8 @@ class _ScreenMainState extends State<ScreenMain> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 200,
+          Container(
+            child: const Text("moinsen"),
           ),
         ],
       ),

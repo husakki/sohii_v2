@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/shopping_cart.dart';
+import '../../model/shopping_cart.dart';
 
 class ShoppingCartIcon extends StatefulWidget {
   const ShoppingCartIcon({Key? key}) : super(key: key);
